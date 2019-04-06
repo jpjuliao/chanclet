@@ -9,18 +9,20 @@ jQuery(document).ready(function($){
         sectionsPos.push($(id).offset().top);
     });
 
-    $('.contenedor').bind('mousewheel touchmove', function(e){
+    $('.contenedor').bind('mousewheel', function(e){
 
         if ($(this).hasClass('mousewheel-timeout')) {
             return;
         }
 
         if (e.originalEvent.wheelDelta > 0) {
+            //console.log('up');
             if (currentSectionIndex === 0) return;
             currentSectionIndex--;
         }
         
         if (e.originalEvent.wheelDelta < 0) {
+            //console.log('down');
             if (currentSectionIndex === 3) return;
             currentSectionIndex++;
         }
@@ -34,6 +36,37 @@ jQuery(document).ready(function($){
             $('.contenedor').removeClass('mousewheel-timeout');
         }, 1000);
         
+    });
+
+    var ts;
+    $('.contenedor').bind('touchstart', function(e) {
+        ts = e.originalEvent.touches[0].clientY;
+    });
+
+    $('.contenedor').bind('touchmove', function(e) {
+
+        if ($(this).hasClass('mousewheel-timeout')) {
+            return;
+        }
+        
+        var te = e.originalEvent.changedTouches[0].clientY;
+        if (ts > te) {
+            //console.log('down');
+            currentSectionIndex++;
+        } else {
+            //console.log('up');
+            currentSectionIndex--;
+        }
+
+        $(this).animate({
+            scrollTop: sectionsPos[currentSectionIndex]
+        }, 500);
+        
+        $(this).addClass('mousewheel-timeout');
+        setTimeout(function(){
+            $('.contenedor').removeClass('mousewheel-timeout');
+        }, 1000);
+
     });
 
     $('.navegation-tabs a').click(function(e){
@@ -53,5 +86,6 @@ jQuery(document).ready(function($){
         }, 500);
 
     })
+
         
 });
