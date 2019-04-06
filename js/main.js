@@ -3,73 +3,54 @@ jQuery(document).ready(function($){
 
     let currentSectionIndex = 0,
         sectionsIds = ['#home', '#works', '#team', '#quote'],
-        sectionsPos = [];
+        sectionsPos = getSectionsPos( sectionsIds ),
+        ts; // = touchStart
 
-    $.each(sectionsIds, function(i, id) {  
-        sectionsPos.push($(id).offset().top);
-    });
+    $('.contenedor')
+        .bind('mousewheel', function(e){
 
-    $('.contenedor').bind('mousewheel', function(e){
+            if ($(this).hasClass('scroll-event-timeout')) {
+                return;
+            }
 
-        if ($(this).hasClass('mousewheel-timeout')) {
-            return;
-        }
+            if (e.originalEvent.wheelDelta > 0) {
+                //console.log('up');
+                if (currentSectionIndex === 0) return;
+                currentSectionIndex--;
+            }
+            
+            if (e.originalEvent.wheelDelta < 0) {
+                //console.log('down');
+                if (currentSectionIndex === 3) return;
+                currentSectionIndex++;
+            }
 
-        if (e.originalEvent.wheelDelta > 0) {
-            //console.log('up');
-            if (currentSectionIndex === 0) return;
-            currentSectionIndex--;
-        }
-        
-        if (e.originalEvent.wheelDelta < 0) {
-            //console.log('down');
-            if (currentSectionIndex === 3) return;
-            currentSectionIndex++;
-        }
+            scrollToElement(this);
+            
+        })
+        .bind('touchstart', function(e) {
+            ts = e.originalEvent.touches[0].clientY;
+        })
+        .bind('touchmove', function(e) {
 
-        $(this).animate({
-            scrollTop: sectionsPos[currentSectionIndex]
-        }, 500);
-        
-        $(this).addClass('mousewheel-timeout');
-        setTimeout(function(){
-            $('.contenedor').removeClass('mousewheel-timeout');
-        }, 1000);
-        
-    });
+            if ($(this).hasClass('scroll-event-timeout')) {
+                return;
+            }
 
-    var ts;
-    $('.contenedor').bind('touchstart', function(e) {
-        ts = e.originalEvent.touches[0].clientY;
-    });
+            var te = e.originalEvent.changedTouches[0].clientY;
+            if (ts > te) {
+                //console.log('down');
+                currentSectionIndex++;
+            } else {
+                //console.log('up');
+                currentSectionIndex--;
+            }
 
-    $('.contenedor').bind('touchmove', function(e) {
+            scrollToElement(this);
 
-        if ($(this).hasClass('mousewheel-timeout')) {
-            return;
-        }
-        
-        var te = e.originalEvent.changedTouches[0].clientY;
-        if (ts > te) {
-            //console.log('down');
-            currentSectionIndex++;
-        } else {
-            //console.log('up');
-            currentSectionIndex--;
-        }
+        });
 
-        $(this).animate({
-            scrollTop: sectionsPos[currentSectionIndex]
-        }, 500);
-        
-        $(this).addClass('mousewheel-timeout');
-        setTimeout(function(){
-            $('.contenedor').removeClass('mousewheel-timeout');
-        }, 1000);
-
-    });
-
-    $('.navegation-tabs a').click(function(e){
+    $('.navigation-tabs a').click(function(e){
         e.preventDefault();
 
         let href = $(this).attr('href');
@@ -81,11 +62,29 @@ jQuery(document).ready(function($){
             }
         });
 
-        $('.contenedor').animate({
-            scrollTop: sectionsPos[currentSectionIndex]
-        }, 500);
+        scrollToElement('.contenedor');
 
     })
 
+    function getSectionsPos(sectionsIds) {
+        let arr = [];
+        $.each(sectionsIds, function(i, id) {  
+            arr.push( $(id).offset().top );
+        });
+        return arr;
+    }
+
+    function scrollToElement(el) {
+
+        $(el).animate({
+            scrollTop: sectionsPos[currentSectionIndex]
+        }, 500);
+        
+        $(el).addClass('scroll-event-timeout');
+        setTimeout(function(){
+            $('.contenedor').removeClass('scroll-event-timeout');
+        }, 1000);
+
+    }
         
 });

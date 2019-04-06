@@ -141,7 +141,7 @@ textarea {
         background-size: cover;
         /* background-position: 0px; */
     }
-    .navegation-tabs, .menu-fixed{
+    .navigation-tabs, .menu-fixed{
         position: fixed;
         z-index: 1;
         color: #fff;
@@ -150,15 +150,15 @@ textarea {
         top: 0;
     }
     /* Nav-tabs */
-    .navegation-tabs{
+    .navigation-tabs{
         left: 81%;
         top: 30%;
     }
-    .navegation-tabs nav ul  li{
+    .navigation-tabs nav ul  li{
         list-style: none;
         margin-bottom: 1.5em;
     }
-    .navegation-tabs nav ul  li a{
+    .navigation-tabs nav ul  li a{
         color: #fff;
         font-size: 1.5em;
         font-weight: bold;
