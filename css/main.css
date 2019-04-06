@@ -112,6 +112,11 @@ textarea {
         overflow-y: scroll;
         scroll-behavior: smooth;
         scroll-snap-type: y mandatory;
+        max-height: 100vh;
+        overflow: hidden;
+    }
+    .contenedor > div {
+      transition: all .5s;
     }
     .section-tab{
         height: 100vh;
