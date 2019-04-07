@@ -135,8 +135,10 @@ main {
 
 /* Nav-tabs */
 .navigation-tabs {
-    left: 81%;
-    top: 30%;
+    right: 0;
+    left: 80%;
+    top: 50%;
+    margin-top: -99px;
 }
 
 .navigation-tabs nav ul li {

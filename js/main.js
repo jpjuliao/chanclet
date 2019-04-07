@@ -4,15 +4,15 @@ jQuery(document).ready(function($){
     let currentSectionIndex = 0,
         sectionsIds = ['#home', '#works', '#team', '#quote'],
         sectionsPos = getSectionsPosition( sectionsIds ),
-        ts, // = touchStart
-        scrollTimeout = 2000,
+        touchStartY,
+        scrollTimeout = 1000,
         animationDuration = 1500,
         animationEffect = 'easeInOutExpo'; //'easeOutQuad'; // https://easings.net/en
 
     $('main')
         .bind('mousewheel', function(e){
 
-            if (isScrollInProgress()) {
+            if (isAnimationInProgress()) {
                 return;
             }
 
@@ -26,20 +26,19 @@ jQuery(document).ready(function($){
                 currentSectionIndex++;
             }
 
-            scrollToElement(this);
+            scrollTo(this);
             
         })
         .bind('touchstart', function(e) {
-            ts = e.originalEvent.touches[0].clientY;
+            touchStartY = e.originalEvent.touches[0].clientY;
         })
         .bind('touchmove', function(e) {
 
-            if (isScrollInProgress()) {
+            if (isAnimationInProgress()) {
                 return;
             }
 
-            var te = e.originalEvent.changedTouches[0].clientY;
-            if (ts > te) {
+            if (touchStartY > e.originalEvent.changedTouches[0].clientY) {
                 //console.log('down');
                 currentSectionIndex++;
             } else {
@@ -47,13 +46,17 @@ jQuery(document).ready(function($){
                 currentSectionIndex--;
             }
 
-            scrollToElement(this);
+            scrollTo(this);
 
         });
 
     $('.navigation-tabs a')
         .click(function(e){
             e.preventDefault();
+
+            if (isAnimationInProgress()) {
+                return;
+            }
 
             let href = $(this).attr('href');
 
@@ -64,7 +67,7 @@ jQuery(document).ready(function($){
                 }
             });
 
-            scrollToElement('main');
+            scrollTo('main');
 
         })
 
@@ -79,7 +82,7 @@ jQuery(document).ready(function($){
         return arr;
     }
 
-    function scrollToElement(el) {
+    function scrollTo(el) {
 
         if (currentSectionIndex < 0) {
             currentSectionIndex = 0;
@@ -106,7 +109,7 @@ jQuery(document).ready(function($){
 
     }
 
-    function isScrollInProgress() {
+    function isAnimationInProgress() {
         if ($('main').hasClass('scroll-event-in-progress')) {
             return true;;
         }
