@@ -68,6 +68,9 @@ jQuery(document).ready(function($){
 
         })
 
+    $('.navigation-tabs li')
+        .first().addClass('active');
+
     function getSectionsPosition(sectionsIds) {
         let arr = [];
         $.each(sectionsIds, function(i, id) {  
