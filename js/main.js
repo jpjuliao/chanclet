@@ -9,7 +9,7 @@ jQuery(document).ready(function($){
         animationDuration = 1500,
         animationEffect = 'easeInOutExpo'; //'easeOutQuad'; // https://easings.net/en
 
-    $('.contenedor')
+    $('main')
         .bind('mousewheel', function(e){
 
             if (isScrollInProgress()) {
