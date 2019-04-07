@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
                 }
             });
 
-            scrollToElement('.contenedor');
+            scrollToElement('main');
 
         })
 
@@ -92,7 +92,7 @@ jQuery(document).ready(function($){
         
         $(el).addClass('scroll-event-in-progress');
         setTimeout(function(){
-            $('.contenedor').removeClass('scroll-event-in-progress');
+            $('main').removeClass('scroll-event-in-progress');
         }, scrollTimeout);
 
         let linkChildIndex = currentSectionIndex + 1;
@@ -104,7 +104,7 @@ jQuery(document).ready(function($){
     }
 
     function isScrollInProgress() {
-        if ($('.contenedor').hasClass('scroll-event-in-progress')) {
+        if ($('main').hasClass('scroll-event-in-progress')) {
             return true;;
         }
     }
