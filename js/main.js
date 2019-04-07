@@ -4,12 +4,15 @@ jQuery(document).ready(function($){
     let currentSectionIndex = 0,
         sectionsIds = ['#home', '#works', '#team', '#quote'],
         sectionsPos = getSectionsPos( sectionsIds ),
-        ts; // = touchStart
+        ts, // = touchStart
+        scrollTimeout = 2000,
+        animationDuration = 1500,
+        animationEffect = 'easeInOutExpo'; //'easeOutQuad'; // https://easings.net/en
 
     $('.contenedor')
         .bind('mousewheel', function(e){
 
-            if ($(this).hasClass('scroll-event-timeout')) {
+            if (scrollInProgress()) {
                 return;
             }
 
@@ -33,7 +36,7 @@ jQuery(document).ready(function($){
         })
         .bind('touchmove', function(e) {
 
-            if ($(this).hasClass('scroll-event-timeout')) {
+            if (scrollInProgress()) {
                 return;
             }
 
@@ -76,15 +79,28 @@ jQuery(document).ready(function($){
 
     function scrollToElement(el) {
 
-        $(el).animate({
-            scrollTop: sectionsPos[currentSectionIndex]
-        }, 500);
+        $(el).find('.section-tab').first().animate({
+            //scrollTop: sectionsPos[currentSectionIndex]
+            marginTop: (currentSectionIndex * -100) + 'vh'
+        }, animationDuration, animationEffect);
         
-        $(el).addClass('scroll-event-timeout');
+        $(el).addClass('scroll-event-in-progress');
         setTimeout(function(){
-            $('.contenedor').removeClass('scroll-event-timeout');
-        }, 1000);
+            $('.contenedor').removeClass('scroll-event-in-progress');
+        }, scrollTimeout);
 
+        let linkChildIndex = currentSectionIndex + 1;
+        $('.navigation-tabs li')
+            .removeClass('active')
+            .filter(':nth-child('+linkChildIndex+')')
+            .addClass('active');
+
+    }
+
+    function scrollInProgress() {
+        if ($('.contenedor').hasClass('scroll-event-in-progress')) {
+            return true;;
+        }
     }
         
 });
