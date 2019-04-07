@@ -53,21 +53,22 @@ jQuery(document).ready(function($){
 
         });
 
-    $('.navigation-tabs a').click(function(e){
-        e.preventDefault();
+    $('.navigation-tabs a')
+        .click(function(e){
+            e.preventDefault();
 
-        let href = $(this).attr('href');
+            let href = $(this).attr('href');
 
-        $.each(sectionsIds, function(i, id){
+            $.each(sectionsIds, function(i, id){
 
-            if (id == href) {
-                currentSectionIndex = i;
-            }
-        });
+                if (id == href) {
+                    currentSectionIndex = i;
+                }
+            });
 
-        scrollToElement('.contenedor');
+            scrollToElement('.contenedor');
 
-    })
+        })
 
     function getSectionsPos(sectionsIds) {
         let arr = [];
