@@ -8,7 +8,7 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-   html {
+html {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
@@ -99,18 +99,10 @@ body {
     overflow: hidden;
 }
 
-.contenedor > div {
-    /* transition: all .5s; */
-}
-
 .section-tab {
     height: 100vh;
     scroll-snap-align: center;
     color: #fff;
-}
-
-.section-tab .contenido {
-    padding-left: 8em;
 }
 
 .home {
