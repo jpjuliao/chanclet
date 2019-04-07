@@ -12,7 +12,7 @@ jQuery(document).ready(function($){
     $('.contenedor')
         .bind('mousewheel', function(e){
 
-            if (scrollInProgress()) {
+            if (isScrollInProgress()) {
                 return;
             }
 
@@ -36,7 +36,7 @@ jQuery(document).ready(function($){
         })
         .bind('touchmove', function(e) {
 
-            if (scrollInProgress()) {
+            if (isScrollInProgress()) {
                 return;
             }
 
@@ -98,7 +98,7 @@ jQuery(document).ready(function($){
 
     }
 
-    function scrollInProgress() {
+    function isScrollInProgress() {
         if ($('.contenedor').hasClass('scroll-event-in-progress')) {
             return true;;
         }
