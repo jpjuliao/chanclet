@@ -3,8 +3,7 @@ jQuery(document).ready(function($){
 
     let currentSectionIndex = 0,
         sectionsIds = ['#home', '#works', '#team', '#quote'],
-        sectionsPos = getSectionsPos( sectionsIds ),
-        sectionsCount = sectionsIds.length,
+        sectionsPos = getSectionsPosition( sectionsIds ),
         ts, // = touchStart
         scrollTimeout = 2000,
         animationDuration = 1500,
@@ -69,7 +68,7 @@ jQuery(document).ready(function($){
 
         })
 
-    function getSectionsPos(sectionsIds) {
+    function getSectionsPosition(sectionsIds) {
         let arr = [];
         $.each(sectionsIds, function(i, id) {  
             arr.push( $(id).offset().top );
@@ -78,12 +77,12 @@ jQuery(document).ready(function($){
     }
 
     function scrollToElement(el) {
-        
+
         if (currentSectionIndex < 0) {
             currentSectionIndex = 0;
         }
-        if (currentSectionIndex === sectionsCount) {
-            currentSectionIndex = sectionsCount - 1;
+        if (currentSectionIndex === sectionsIds.length) {
+            currentSectionIndex = sectionsIds.length - 1;
         };
 
         $(el).find('.section-tab').first().animate({
