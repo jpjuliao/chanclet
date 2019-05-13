@@ -90,18 +90,9 @@ body {
 }
 
 main {
-    /* width: 100%; */
-    /* height: 100%; */
-    /* overflow-y: scroll; */
-    /* scroll-behavior: smooth; */
-    /* scroll-snap-type: y mandatory; */
-    /* max-height: 100vh; */
-    /* overflow: hidden; */
 }
 
-.section-tab {
-    height: 100vh;
-    scroll-snap-align: center;
+.section {
     color: #fff;
 }
 
@@ -117,8 +108,14 @@ main {
     /* background-position: 0px; */
 }
 
-.quote {
+.team {
     background: url('../img/bg-home.jpg');
+    background-size: cover;
+    /* background-position: 0px; */
+}
+
+.quote {
+    background: url('../img/bg-services.jpg');
     background-size: cover;
     /* background-position: 0px; */
 }
