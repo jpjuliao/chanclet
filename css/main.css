@@ -113,11 +113,29 @@ main {
     background-size: cover;
     /* background-position: 0px; */
 }
+    .team .post__menu__item {
+        transition: all .5s;
+    }
+    .team .collapsing {
+        /* transition-delay: .5s; */
+    }
 
 .quote {
     background: url('../img/bg-services.jpg');
     background-size: cover;
     /* background-position: 0px; */
+}
+
+.posts__menu__item {
+    transition: all .5s;
+    max-height: 150px; 
+}
+.posts__menu__item img {
+    max-height: 100%;
+}
+
+.posts__menu--small .posts__menu__item {
+    max-height: 50px; 
 }
 
 .navigation-tabs, .menu-fixed {
