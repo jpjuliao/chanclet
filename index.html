@@ -13,9 +13,8 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  
-    <link rel="stylesheet" href="node_modules/fullpage.js/dist/fullpage.min.css">
-    <meta name="theme-color" content="#000">
+  <link rel="stylesheet" href="dist/bundle.css">
+  <meta name="theme-color" content="#000">
 </head>
 <body>
 
@@ -230,8 +229,7 @@
     crossorigin="anonymous"></script>
   <!-- <script src="js/plugins.js"></script>
   <script src="js/main.js"></script> -->
-  <script type="text/javascript" src="/dist/fullpage.min.js"></script>
-  <script type="text/javascript" src="/dist/scrolloverflow.min.js"></script>
+  <script type="text/javascript" src="dist/bundle.js"></script>
   <script>
     // Fullpage.js init
     new fullpage('#fullpage', {
@@ -252,7 +250,7 @@
     $('#collapseExample2').on('show.bs.collapse', function (e) {
       $('.team .posts__content > div').css('transition-delay', '0.5s');
       $('.team .posts__menu').addClass('posts__menu--small').removeClass('posts__menu--large');
-      $('.team .posts__menu__item').addClass('col-md-2').removeClass('col-md-4');
+      $('.team .posts__menu__item').addClass('col-6 col-md-2').removeClass('col-12 col-md-4');
     })
       .on('shown.bs.collapse', function (e) {
 
@@ -263,7 +261,7 @@
       .on('hidden.bs.collapse', function (e) {
         $('.team .posts__menu').addClass('posts__menu--large').removeClass('posts__menu--small');
         $('.team .posts__menu').addClass('').removeClass('');
-        $('.team .posts__menu__item').addClass('col-md-4').removeClass('col-md-2');
+        $('.team .posts__menu__item').addClass('col-12 col-md-4').removeClass('col-6 col-md-2');
       })
   </script>
 
