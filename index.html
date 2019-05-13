@@ -13,9 +13,12 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <meta name="theme-color" content="#000">
+  
+    <link rel="stylesheet" href="node_modules/fullpage.js/dist/fullpage.min.css">
+    <meta name="theme-color" content="#000">
 </head>
 <body>
+
   <div class="page-container">
 
     <header class="page-header">
@@ -87,10 +90,10 @@
 
     </header>
 
-    <main class="page-content">
+    <main class="page-content" id="fullpage">
 
         <!-- Home -->
-        <section id="home" class="content-fluid px-5 section-tab home d-flex ">
+        <section id="home" class="section content-fluid px-5 section-tab home d-flex ">
           <div class="row d-flex align-items-center pl-md-5">
             <div class="p-0 pl-md-5 col-10">
               <h2 class="display-3">Home</h2>
@@ -101,7 +104,7 @@
         </section>
     
         <!-- Works -->
-        <section id="works" class="content-fluid px-5 section-tab works d-flex ">
+        <section id="works" class="section content-fluid px-5 section-tab works d-flex ">
           <div class="row d-flex align-items-center pl-md-5">
             <div class="p-0 pl-md-5 col-10">
               <h2 class="display-3">Works</h2>
@@ -112,7 +115,7 @@
         </section>
     
         <!-- Team -->
-        <section id="team" class="content-fluid px-5 section-tab works d-flex ">
+        <section id="team" class="section content-fluid px-5 section-tab works d-flex ">
           <div class="row d-flex align-items-center pl-md-5">
             <div class="p-0 pl-md-5 col-10 ">
               <h2 class="display-3">Team</h2>
@@ -123,7 +126,7 @@
         </section>
     
         <!-- Quote -->
-        <section id="quote" class="content-fluid px-5 section-tab works d-flex ">
+        <section id="quote" class="section content-fluid px-5 section-tab works d-flex ">
           <div class="row d-flex align-items-center pl-md-5">
             <div class="p-0 pl-md-5 col-10">
               <h2 class="display-3">Quote</h2>
@@ -149,8 +152,21 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+  <!-- <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script> -->
+
+  <script type="text/javascript" src="node_modules/fullpage.js/dist/fullpage.min.js"></script>
+  <script type="text/javascript" src="node_modules/fullpage.js/vendors/scrolloverflow.min.js"></script>
+  <script>
+    new fullpage('#fullpage', {
+        anchors: ['Home', 'Works', 'Team', 'Quote'],
+        sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['First page', 'Second page', 'Third and last page']
+
+    });
+  </script>
 
 </body>
 
